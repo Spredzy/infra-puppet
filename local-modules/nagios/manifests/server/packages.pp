@@ -1,16 +1,16 @@
-
+# List of packages to be installed
 class nagios::server::packages {
   package {
-    "libwww-perl" :
+    'libwww-perl' :
       ensure  => installed;
 
-    "libcrypt-ssleay-perl" :
+    'libcrypt-ssleay-perl' :
       ensure  => installed;
 
-    "nagios3" :
+    'nagios3' :
       ensure  => installed;
 
-    "nagios-nrpe-plugin" :
+    'nagios-nrpe-plugin' :
       ensure  => installed;
   }
 }

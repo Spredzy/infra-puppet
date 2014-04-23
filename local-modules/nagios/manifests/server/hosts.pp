@@ -10,17 +10,17 @@ class nagios::server::hosts {
   include nagios::server
 
   nagios::server::basic-host {
-    "lettuce" :
-      full_name => "lettuce.jenkins-ci.org";
-    "cabbage" :
+    'lettuce' :
+      full_name => 'lettuce.jenkins-ci.org';
+    'cabbage' :
       ensure    => absent,
-      full_name => "cabbage.jenkins-ci.org";
-    "spinach" :
-      full_name => "spinach.jenkins-ci.org";
-    "cucumber" :
-      full_name => "cucumber.jenkins-ci.org";
-    "eggplant" :
-      full_name => "eggplant.jenkins-ci.org";
+      full_name => 'cabbage.jenkins-ci.org';
+    'spinach' :
+      full_name => 'spinach.jenkins-ci.org';
+    'cucumber' :
+      full_name => 'cucumber.jenkins-ci.org';
+    'eggplant' :
+      full_name => 'eggplant.jenkins-ci.org';
     'kale' :
       os        => 'redhat',
       full_name => 'kale.jenkins-ci.org';
