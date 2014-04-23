@@ -1,9 +1,8 @@
 #
 #   Manifest responsible for driving a the MirrorBrain installation behind
 #   mirrors.jenkins-ci.org
-
 class mirrorbrain {
-    if $operatingsystem != 'Ubuntu' {
+    if $::operatingsystem != 'Ubuntu' {
         err('The mirrorbrain module is currently only functional for Ubuntu hosts')
     }
 

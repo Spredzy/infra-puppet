@@ -1,4 +1,4 @@
-
+# List of files needed
 class mirrorbrain::files {
     file {
         '/etc/apache2/sites-available/mirrors.jenkins-ci.org' :
@@ -9,8 +9,8 @@ class mirrorbrain::files {
         '/etc/apache2/mods-available/geoip.conf' :
             ensure  => present,
             require => [
-                        Class['apache2']
-                       ],
+              Class['apache2']
+            ],
             source  => 'puppet:///modules/mirrorbrain/geoip.conf';
 
         '/etc/apache2/mods-available/dbd.conf' :

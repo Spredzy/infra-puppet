@@ -1,3 +1,4 @@
+# List of cron job needed
 class mirrorbrain::cron {
     cron {
         'mirrorprobe' :

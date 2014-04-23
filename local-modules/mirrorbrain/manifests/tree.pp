@@ -1,6 +1,6 @@
+# Make sure the directory tree for MirrorBrain to mirror exists
 class mirrorbrain::tree {
     file {
-        # Make sure the directory tree for MirrorBrain to mirror exists
         '/srv' :
             ensure => directory;
         '/srv/releases' :
