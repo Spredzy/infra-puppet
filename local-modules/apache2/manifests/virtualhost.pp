@@ -1,3 +1,4 @@
+# Define an Apache VirtualHost configuration file
 define apache2::virtualhost($source=undef, $content=undef) {
   include apache2::functions
 

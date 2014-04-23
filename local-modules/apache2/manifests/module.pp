@@ -1,3 +1,4 @@
+# Define that enables an Apache Module
 define apache2::module {
   include apache2::functions
 
@@ -12,11 +13,11 @@ define apache2::module {
   exec {
     "enable-${name}" :
       require => [
-               Package["apache2"],
-               File[$available_file_path],
-             ],
-      unless => "test -f ${enabled_file_path}",
+        Package['apache2'],
+        File[$available_file_path],
+      ],
+      unless  => "test -f ${enabled_file_path}",
       command => "a2enmod ${name}",
-      notify => Exec["reload-apache2"];
+      notify  => Exec['reload-apache2'];
   }
 }
