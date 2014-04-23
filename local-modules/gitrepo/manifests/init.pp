@@ -5,24 +5,24 @@ class gitrepo {
   include apache2
   include apache2::log-rotation
 
-  $gitrepo_dir="/var/www/git.jenkins-ci.org"
+  $gitrepo_dir = '/var/www/git.jenkins-ci.org'
 
   package {
-    "gitweb" :
-      ensure    => installed;
+    'gitweb' :
+      ensure => installed;
   }
 
   file {
-    "/etc/gitweb.conf":
+    '/etc/gitweb.conf':
       source => 'puppet:///modules/gitrepo/gitweb.conf';
 
-    "/var/www/git.jenkins-ci.org/indextext.html":
+    '/var/www/git.jenkins-ci.org/indextext.html':
       source => 'puppet:///modules/gitrepo/indextext.html';
   }
 
   apache2::virtualhost {
     'git.jenkins-ci.org' :
         require => Class['apache2'],
-        source    => 'puppet:///modules/gitrepo/git.jenkins-ci.org';
+        source  => 'puppet:///modules/gitrepo/git.jenkins-ci.org';
   }
 }
