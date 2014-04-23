@@ -10,6 +10,6 @@ class base::denyhosts {
     '/var/lib/denyhosts/allowed-hosts' :
       ensure  => present,
       require => File['/var/lib/denyhosts'],
-      content => "140.211.15.121";
+      content => '140.211.15.121';
   }
 }
