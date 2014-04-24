@@ -1,4 +1,4 @@
-
+# Ruby package
 class packages::ruby {
   package {
     'ruby' :

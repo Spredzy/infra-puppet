@@ -1,4 +1,4 @@
-
+# wget Package
 class packages::wget {
   package {
     'wget' :

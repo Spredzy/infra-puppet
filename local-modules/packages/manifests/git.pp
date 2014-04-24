@@ -1,10 +1,10 @@
-
+# Git Package
 class packages::git {
-    if ($operatingsystem =~ /(RedHat|CentOS)/) {
+    if ($::operatingsystem =~ /(RedHat|CentOS)/) {
         package {
             'git' :
-                alias  => 'git-core',
-                ensure => present;
+                ensure => present,
+                alias  => 'git-core';
         }
     }
     else {

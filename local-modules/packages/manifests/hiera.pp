@@ -1,3 +1,4 @@
+# Hiera Package
 class packages::hiera {
   package {
     'hiera' :

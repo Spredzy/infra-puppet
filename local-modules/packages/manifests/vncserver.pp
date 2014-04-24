@@ -1,6 +1,6 @@
-
+# VNCServer Package
 class packages::vncserver {
-    $tightvncserver = $operatingsystem ? {
+    $tightvncserver = $::operatingsystem ? {
         /(RedHat|CentOS)/   => 'tightvnc-server',
         Ubuntu              => 'tightvncserver',
         default             => 'tightvncserver',
@@ -8,9 +8,9 @@ class packages::vncserver {
 
     package {
         # on Ubuntu
-        "$tightvncserver" :
+        $tightvncserver :
             ensure => present,
-            alias => 'tightvncserver';
+            alias  => 'tightvncserver';
     }
 }
 # vim: shiftwidth=2 expandtab tabstop=2
