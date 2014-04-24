@@ -1,8 +1,6 @@
 #
 #   Manifest necessary for setting up a custom Jenkins-specific DNS server
 #
-
-
 class jenkins-dns::server {
   package {
     'bind' :
@@ -29,17 +27,17 @@ class jenkins-dns::server {
       group   => bind,
       notify  => Service['bind'],
       require => [
-                  File['/etc/bind/jenkins-ci.org.zone'],
-                  Package['bind']
-                  ],
-      source => 'puppet:///modules/jenkins-dns/named.conf.local';
+        File['/etc/bind/jenkins-ci.org.zone'],
+        Package['bind']
+      ],
+      source  => 'puppet:///modules/jenkins-dns/named.conf.local';
   }
 
   service {
     'bind' :
       ensure  => running,
       require => Package['bind'],
-      name  => 'bind9';
+      name    => 'bind9';
   }
 
   firewall {
