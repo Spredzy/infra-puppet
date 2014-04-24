@@ -1,3 +1,4 @@
+# Confluence firewall
 class confluence::firewall {
   firewall {
   '100 accept inbound HTTP requests' :

@@ -8,10 +8,10 @@ class confluence {
     include apache2::log-rotation
     include confluence::config
 
-    Class["apache2"] ->
-        Class["mysql::server"] ->
-            Class["confluence"] ->
-                Class["confluence::config"]
+    Class['apache2'] ->
+        Class['mysql::server'] ->
+            Class['confluence'] ->
+                Class['confluence::config']
 
     class { 'mysql::server':
         # TODO: how to correctly protect a password?
@@ -32,21 +32,21 @@ class confluence {
     # $deb = 'atlassian-confluence_3.5.16-0_all.deb'
 
     file { "/tmp/${deb}":
-        owner   => root,
-        group   => root,
-        mode    => 644,
+        owner   => 'root',
+        group   => 'root',
+        mode    => '0644',
         source  => "puppet:///modules/confluence/${deb}"
     }
 
-    package { "openjdk-6-jre":
-        alias  => 'jre',
-        ensure => present;
+    package { 'openjdk-6-jre':
+        ensure => present,
+        alias  => 'jre';
     }
     # user and group created by debian package
-    package { "atlassian-confluence":
+    package { 'atlassian-confluence':
         # ensure => "4.2.4",
-        provider => dpkg,
         ensure   => latest,
+        provider => dpkg,
         source   => "/tmp/${deb}",
         require  => Package['jre'];
     }
