@@ -1,6 +1,7 @@
+# Install exim4
 class exim4-config {
   package {
-  "exim4" :
+  'exim4' :
     ensure  => installed;
   }
 }
