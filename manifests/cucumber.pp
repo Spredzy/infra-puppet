@@ -48,7 +48,7 @@ node default {
       # Make sure we're using the latest mirror list before we update mirmon
       'update the mirmon mirror list' :
         command => '/usr/bin/mb export --format=mirmon > /srv/releases/mirror_list',
-        minute => 40;
+        minute  => 40;
 
       'update mirmon status page' :
         command => '/usr/bin/mirmon -q -get update -c /etc/mirmon.conf',
