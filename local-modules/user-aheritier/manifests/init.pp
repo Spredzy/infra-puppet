@@ -1,42 +1,43 @@
+# User ahertier
 class user-aheritier {
     group {
-        "aheritier" :
+        'aheritier' :
             ensure  => present;
     }
 
     user {
-        "aheritier" :
-            gid     => "aheritier",
-            groups  => "infraadmin",
-            shell   => "/bin/bash",
-            home    => "/home/aheritier",
+        'aheritier' :
             ensure  => present,
+            gid     => 'aheritier',
+            groups  => 'infraadmin',
+            shell   => '/bin/bash',
+            home    => '/home/aheritier',
             require => [
-                        Group["aheritier"],
-                        Group["infraadmin"],
-                        ];
+              Group['aheritier'],
+              Group['infraadmin'],
+            ];
     }
 
     file {
-        "/home/aheritier" :
+        '/home/aheritier' :
             ensure      => directory,
-            require     => User["aheritier"],
-            owner       => "aheritier",
-            group       => "aheritier";
-        "/home/aheritier/.ssh" :
+            require     => User['aheritier'],
+            owner       => 'aheritier',
+            group       => 'aheritier';
+        '/home/aheritier/.ssh' :
             ensure      => directory,
-            require     => File["/home/aheritier"],
-            owner       => "aheritier",
-            group       => "aheritier";
+            require     => File['/home/aheritier'],
+            owner       => 'aheritier',
+            group       => 'aheritier';
     }
 
     ssh_authorized_key {
-        "aheritier" :
-            user        => "aheritier",
+        'aheritier' :
             ensure      => present,
-            require     => File["/home/aheritier/.ssh"],
-            key         => "AAAAB3NzaC1yc2EAAAABIwAAAIEAvQwwtdd6moJF7OQEiCnNNs5XdeEUSbIBcVfQWaAFU32EXap59S56ABPSNBkXTqhVCR7jXKL6suqZuyAOyiYYYrUHQth6oMMk2110b+VZ1o2xxa9vbh918ivRbk4NLbhVwa9hy25u/YwS1Z5bB8ymORMbwen0QGSnikrkAL6IVi8=",
-            type        => "rsa",
-            name        => "aheritier";
+            user        => 'aheritier',
+            require     => File['/home/aheritier/.ssh'],
+            key         => 'AAAAB3NzaC1yc2EAAAABIwAAAIEAvQwwtdd6moJF7OQEiCnNNs5XdeEUSbIBcVfQWaAFU32EXap59S56ABPSNBkXTqhVCR7jXKL6suqZuyAOyiYYYrUHQth6oMMk2110b+VZ1o2xxa9vbh918ivRbk4NLbhVwa9hy25u/YwS1Z5bB8ymORMbwen0QGSnikrkAL6IVi8=',
+            type        => 'rsa',
+            name        => 'aheritier';
     }
 }
