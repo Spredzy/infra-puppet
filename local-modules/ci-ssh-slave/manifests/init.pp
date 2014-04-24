@@ -3,49 +3,48 @@
 #   into ~/.ssh/authorized_keys
 #
 #   This should help streamline setting up new build slaves
-
 class ci-ssh-slave {
     include packages::subversion
     include packages::vncserver # for Xvnc support
 
     group {
-        "jenkins" :
+        'jenkins' :
             ensure  => present;
     }
 
     user {
-        "jenkins" :
-            gid     => "jenkins",
+        'jenkins' :
             ensure  => present,
-            shell   => "/bin/bash",
-            home    => "/home/jenkins",
+            gid     => 'jenkins',
+            shell   => '/bin/bash',
+            home    => '/home/jenkins',
             require => [
-                        Group["jenkins"],
-                       ];
+              Group['jenkins'],
+            ];
     }
 
     file {
-        "/home/jenkins" :
+        '/home/jenkins' :
             ensure      => directory,
-            require     => User["jenkins"],
-            owner       => "jenkins",
-            group       => "jenkins";
+            require     => User['jenkins'],
+            owner       => 'jenkins',
+            group       => 'jenkins';
 
-        "/home/jenkins/.ssh" :
+        '/home/jenkins/.ssh' :
             ensure      => directory,
-            require     => File["/home/jenkins"],
-            owner       => "jenkins",
-            group       => "jenkins";
+            require     => File['/home/jenkins'],
+            owner       => 'jenkins',
+            group       => 'jenkins';
     }
 
     ssh_authorized_key {
-        "jenkins" :
-            user    => "jenkins",
+        'jenkins' :
             ensure  => present,
-            require => File["/home/jenkins/.ssh"],
-            key     => "AAAAB3NzaC1yc2EAAAABIwAAAQEA1l3oZpCJlFspsf6cfa7hovv6NqMB5eAn/+z4SSiaKt9Nsm22dg9xw3Et5MczH0JxHDw4Sdcre7JItecltq0sLbxK6wMEhrp67y0lMujAbcMu7qnp5ZLv9lKSxncOow42jBlzfdYoNSthoKhBtVZ/N30Q8upQQsEXNr+a5fFdj3oLGr8LSj9aRxh0o+nLLL3LPJdY/NeeOYJopj9qNxyP/8VdF2Uh9GaOglWBx1sX3wmJDmJFYvrApE4omxmIHI2nQ0gxKqMVf6M10ImgW7Rr4GJj7i1WIKFpHiRZ6B8C/Ds1PJ2otNLnQGjlp//bCflAmC3Vs7InWcB3CTYLiGnjrw==",
-            type    => "rsa",
-            name    => "hudson@cucumber";
+            user    => 'jenkins',
+            require => File['/home/jenkins/.ssh'],
+            key     => 'AAAAB3NzaC1yc2EAAAABIwAAAQEA1l3oZpCJlFspsf6cfa7hovv6NqMB5eAn/+z4SSiaKt9Nsm22dg9xw3Et5MczH0JxHDw4Sdcre7JItecltq0sLbxK6wMEhrp67y0lMujAbcMu7qnp5ZLv9lKSxncOow42jBlzfdYoNSthoKhBtVZ/N30Q8upQQsEXNr+a5fFdj3oLGr8LSj9aRxh0o+nLLL3LPJdY/NeeOYJopj9qNxyP/8VdF2Uh9GaOglWBx1sX3wmJDmJFYvrApE4omxmIHI2nQ0gxKqMVf6M10ImgW7Rr4GJj7i1WIKFpHiRZ6B8C/Ds1PJ2otNLnQGjlp//bCflAmC3Vs7InWcB3CTYLiGnjrw==',
+            type    => 'rsa',
+            name    => 'hudson@cucumber';
     }
 
     package {
@@ -64,7 +63,7 @@ class ci-ssh-slave {
 
     file {
         # put RubyGems bin directory into PATH
-        "/etc/profile.d/gem.sh" :
+        '/etc/profile.d/gem.sh' :
             source => 'puppet:///modules/ci-ssh-slave/gem.sh';
     }
 }
