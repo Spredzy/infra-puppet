@@ -1,3 +1,4 @@
+# User mindless
 class user-mindless {
     group {
         'mindless' :
@@ -12,9 +13,9 @@ class user-mindless {
             shell   => '/bin/bash',
             home    => '/home/mindless',
             require => [
-                        Group['mindless'],
-                        Group['infraadmin'],
-                        ];
+              Group['mindless'],
+              Group['infraadmin'],
+            ];
     }
 
     file {
